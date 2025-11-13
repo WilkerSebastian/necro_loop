@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://hg57mto5bn7o"]
+
+[ext_resource type="PackedScene" uid="uid://cew3cevt4ay60" path="res://Actors/Player/player.tscn" id="1_h1khe"]
+[ext_resource type="PackedScene" uid="uid://hextgko43j2h" path="res://Actors/Units/Enemy/enemy.tscn" id="2_1q67n"]
+[ext_resource type="PackedScene" uid="uid://cinb2d6f2iubk" path="res://Actors/Units/Ally/ally.tscn" id="3_bl2xt"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_h1khe")]
+position = Vector2(564, 326)
+
+[node name="Enemy" parent="." instance=ExtResource("2_1q67n")]
+position = Vector2(375, 433)
+
+[node name="Ally" parent="." instance=ExtResource("3_bl2xt")]
+position = Vector2(277, 213)

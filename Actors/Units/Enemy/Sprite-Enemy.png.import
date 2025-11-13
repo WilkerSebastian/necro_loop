@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cste822phv0qi"
-path="res://.godot/imported/Sprite-Ally.png-56ba38e4adf415389dacbabad99ca53c.ctex"
+uid="uid://clefa2gi7djot"
+path="res://.godot/imported/Sprite-Enemy.png-ee4e0df440b0c6c9e16250930261d7d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite-Ally.png"
-dest_files=["res://.godot/imported/Sprite-Ally.png-56ba38e4adf415389dacbabad99ca53c.ctex"]
+source_file="res://Actors/Units/Enemy/Sprite-Enemy.png"
+dest_files=["res://.godot/imported/Sprite-Enemy.png-ee4e0df440b0c6c9e16250930261d7d7.ctex"]
 
 [params]
 
