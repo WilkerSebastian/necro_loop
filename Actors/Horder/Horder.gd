@@ -61,13 +61,30 @@ func _command_all_idle():
 		if is_instance_valid(unit):
 			unit.command_idle()
 
-func _find_closest_ally(player_position):
-	var allies = get_tree().get_nodes_in_group("allies")
-	var closest_ally = null
-	var min_distance = INF # Infinito
+func _physics_process(_delta):
 	
-	if allies.size() == 0:
+	if current_target:
+		if not is_instance_valid(current_target):
+			print("Horda: Alvo foi destruído! Procurando novo alvo.")
+			
+			var player = get_tree().get_first_node_in_group("player")
+			if player:
+				current_target = _find_closest_ally(player.global_position)
+				
+				_command_all_attack()
+			else:
+				current_target = null
+				_command_all_idle()
+
+func _find_closest_ally(player_position):
+	
+	var allies = get_tree().get_nodes_in_group("allies")
+	
+	if allies.is_empty():
 		return get_tree().get_first_node_in_group("player")
+		
+	var closest_ally = null
+	var min_distance = INF
 	
 	for ally in allies:
 		var distance = ally.global_position.distance_to(player_position)

@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkbggdadjm2d4"]
+[gd_scene load_steps=5 format=3 uid="uid://dkbggdadjm2d4"]
 
 [ext_resource type="Script" uid="uid://c62148alwxt84" path="res://Actors/Units/Warrior/Warrior.gd" id="1_nwhpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwhpc"]
 size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwhpc"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gaooa"]
+radius = 18.0
 
 [node name="Warrior" type="CharacterBody2D"]
 script = ExtResource("1_nwhpc")
@@ -26,3 +32,17 @@ grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nwhpc")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
+shape = SubResource("CircleShape2D_nwhpc")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_gaooa")
+debug_color = Color(0.8232311, 0.0016922771, 0.96094066, 0.41960785)

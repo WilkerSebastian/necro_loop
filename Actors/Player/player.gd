@@ -21,3 +21,9 @@ func _process(delta: float):
 	velocity = direction.normalized() * speed * delta
 	
 	move_and_slide()
+	
+func take_damage(_damage_amount):
+	
+	print("Rodolfo foi atingido! Fim de Jogo.")
+	
+	get_tree().reload_current_scene()

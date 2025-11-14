@@ -5,6 +5,14 @@ enum Team { PLAYER, ENEMY }
 
 enum EnemyState { IDLE, ATTACKING }
 
+@export var health: float = 100.0
+@export var attack_damage: float = 10.0
+@export var attack_speed: float = 1.0 
+@export var attack_range: float = 40.0
+@export var speed: float = 150.0
+
+var attack_timer: Timer
+
 var enemy_state = EnemyState.IDLE
 var horde_spawn_position = Vector2.ZERO 
 
@@ -23,10 +31,6 @@ var visual_node: Node
 	get:
 		return team
 
-@export var health: float = 100.0
-@export var speed: float = 150.0
-@export var attack_damage: float = 10.0
-
 func _ready():
 	visual_node = $Visual
 	if visual_node == null:
@@ -34,6 +38,13 @@ func _ready():
 		return
 		
 	_update_visuals()
+	
+	if has_node("AttackTimer"):
+		attack_timer = $AttackTimer
+		attack_timer.wait_time = 1.0 / attack_speed
+		attack_timer.timeout.connect(_perform_attack)
+	else:
+		push_warning("Combatant não tem um nó filho 'AttackTimer'!")
 
 func _update_visuals():
 	
@@ -90,4 +101,10 @@ func take_damage(damage_amount):
 		die()
 
 func die():
+	if team == Team.PLAYER:
+		remove_from_group("allies")
+	
 	queue_free()
+	
+func _perform_attack():
+	pass
