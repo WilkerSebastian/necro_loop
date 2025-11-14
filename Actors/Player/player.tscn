@@ -1,30 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://cew3cevt4ay60"]
+[gd_scene load_steps=13 format=3 uid="uid://cew3cevt4ay60"]
 
 [ext_resource type="Script" uid="uid://b7o0ps7kj33dy" path="res://Actors/Player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://ox0q03kjeeph" path="res://Actors/Player/rodolfo.png" id="2_5ni5v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhr1b"]
-size = Vector2(10, 18)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ni5v"]
+radius = 23.0
+height = 92.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1key"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b63gh"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7l8t"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isd1h"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gtf5"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awv0x"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnakb"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1lo4"]
+atlas = ExtResource("2_5ni5v")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sciwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1key")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b63gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7l8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isd1h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gtf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awv0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnakb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1lo4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_vhr1b")
+shape = SubResource("CapsuleShape2D_5ni5v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_enabled = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.5492496, 0.46011055, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sciwa")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.058225196
