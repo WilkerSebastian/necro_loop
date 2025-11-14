@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://hg57mto5bn7o"]
+[gd_scene load_steps=4 format=3 uid="uid://hg57mto5bn7o"]
 
 [ext_resource type="PackedScene" uid="uid://cew3cevt4ay60" path="res://Actors/Player/player.tscn" id="1_h1khe"]
 [ext_resource type="PackedScene" uid="uid://dkbggdadjm2d4" path="res://Actors/Units/Warrior/Warrior.tscn" id="2_vbwdf"]
+[ext_resource type="PackedScene" uid="uid://bcj3ny3omqkvu" path="res://Systems/Spawner/HorderSpawner.tscn" id="3_h1khe"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,9 +14,11 @@ speed = 5000.0
 position = Vector2(505, 408)
 team = 0
 
-[node name="Warrior2" parent="." instance=ExtResource("2_vbwdf")]
-position = Vector2(457, 315)
-
 [node name="Aliado 2" parent="." instance=ExtResource("2_vbwdf")]
 position = Vector2(603, 399)
 team = 0
+
+[node name="HordeSpawner" parent="." instance=ExtResource("3_h1khe")]
+
+[node name="SpawPoint_1" type="Node2D" parent="HordeSpawner" groups=["spawn_points"]]
+position = Vector2(1281, -597)

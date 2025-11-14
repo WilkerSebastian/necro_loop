@@ -3,10 +3,17 @@ extends CharacterBody2D
 
 enum Team { PLAYER, ENEMY }
 
-@export var ally_color: Color = Color.BLUE
-@export var enemy_color: Color = Color.RED
+enum EnemyState { IDLE, ATTACKING }
+
+var enemy_state = EnemyState.IDLE
+var horde_spawn_position = Vector2.ZERO 
+
+var target = null
 
 var visual_node: Node
+
+@export var ally_color: Color = Color.BLUE
+@export var enemy_color: Color = Color.RED
 
 @export var team: Team = Team.ENEMY:
 	set(value):
@@ -19,8 +26,6 @@ var visual_node: Node
 @export var health: float = 100.0
 @export var speed: float = 150.0
 @export var attack_damage: float = 10.0
-
-var target = null
 
 func _ready():
 	visual_node = $Visual
@@ -49,8 +54,35 @@ func _update_visuals():
 	#        visual_node.texture = load("res://path/to/enemy_sprite.png")
 
 
-func set_team(new_team: Team):
-	self.team = new_team
+func command_attack(new_target):
+	target = new_target
+	if target:
+		enemy_state = EnemyState.ATTACKING
+	else:
+		command_idle()
+
+func command_idle(idle_position = horde_spawn_position):
+	target = null
+	enemy_state = EnemyState.IDLE
+	horde_spawn_position = idle_position 
+
+func _set_team_value(new_team):
+	team = new_team
+	
+	if team == Team.PLAYER:
+		add_to_group("allies")
+		remove_from_group("enemies")
+  
+		collision_layer = 1 << 2 # Camada 3
+		collision_mask = 1 | (1 << 3) # Camadas 1 e 4
+	else:
+		add_to_group("enemies")
+		remove_from_group("allies")
+		collision_layer = 1 << 3 # camada 4
+		collision_mask = 1 | (1 << 2) # camadas 1 e 3
+
+	if is_inside_tree():
+		_update_visuals()
 
 func take_damage(damage_amount):
 	health -= damage_amount
