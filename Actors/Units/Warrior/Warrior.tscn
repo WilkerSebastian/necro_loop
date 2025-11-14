@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkbggdadjm2d4"]
+
+[ext_resource type="Script" uid="uid://c62148alwxt84" path="res://Actors/Units/Warrior/Warrior.gd" id="1_nwhpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwhpc"]
+size = Vector2(16, 16)
+
+[node name="Warrior" type="CharacterBody2D"]
+script = ExtResource("1_nwhpc")
+max_follow_distance = 65.0
+min_follow_distance = 25.0
+metadata/_custom_type_script = "uid://c62148alwxt84"
+
+[node name="Visual" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nwhpc")
