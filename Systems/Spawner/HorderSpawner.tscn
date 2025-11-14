@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcj3ny3omqkvu"]
+
+[ext_resource type="Script" uid="uid://qnjvi3a11v7g" path="res://Systems/Spawner/HordeSpawner.gd" id="1_1ikxa"]
+[ext_resource type="PackedScene" uid="uid://l1onqnjvd3rk" path="res://Actors/Horder/Horder.tscn" id="2_lwn4h"]
+
+[node name="HordeSpawner" type="Node"]
+script = ExtResource("1_1ikxa")
+horde_scene = ExtResource("2_lwn4h")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://l1onqnjvd3rk"]
+
+[ext_resource type="Script" uid="uid://56msyft7axar" path="res://Actors/Horder/Horder.gd" id="1_26pel"]
+[ext_resource type="PackedScene" uid="uid://dkbggdadjm2d4" path="res://Actors/Units/Warrior/Warrior.tscn" id="2_5tre1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1th2g"]
+
+[node name="Horder" type="Node2D"]
+script = ExtResource("1_26pel")
+combatant_scene = ExtResource("2_5tre1")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_1th2g")
+
+[node name="SpawnUnitsTimer" type="Timer" parent="."]
+wait_time = 2.5
